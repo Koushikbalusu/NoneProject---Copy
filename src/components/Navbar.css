@@ -1,0 +1,214 @@
+.navbar {
+  background: rgba(250, 247, 242, 0.95);
+  backdrop-filter: blur(12px);
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 999;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 20px rgba(44, 44, 44, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  max-width: 1200px;
+}
+
+.navbar-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--primary-sage), var(--secondary-terracotta));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-decoration: none;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.navbar-logo:after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: -5px;
+  left: 0;
+  background: linear-gradient(90deg, var(--refined-gold), var(--secondary-terracotta));
+  transform: scaleX(0.7);
+  transition: transform 0.3s ease;
+  border-radius: 1px;
+}
+
+.navbar-logo:hover:after {
+  transform: scaleX(1);
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5rem;
+  list-style-type:none;
+}
+
+.nav-item {
+  margin: 0;
+  position: relative;
+}
+
+.nav-item a {
+  color: var(--charcoal-text);
+  text-decoration: none;
+  font-weight: 500;
+  font-family: 'Inter', sans-serif;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  padding: 0.7rem 1.2rem;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.nav-item a::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--light-sage), var(--secondary-terracotta));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.nav-item a:hover::before {
+  opacity: 0.1;
+}
+
+.nav-item a:after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 3px;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(90deg, var(--refined-gold), var(--secondary-terracotta));
+  transition: width 0.3s ease;
+  border-radius: 2px;
+}
+
+.nav-item a:hover:after,
+.nav-item a.active:after {
+  width: 100%;
+}
+
+.nav-item a:hover {
+  color: var(--primary-sage);
+  transform: translateY(-1px);
+}
+
+.nav-item a.active {
+  font-weight: 600;
+  color: var(--primary-sage);
+}
+
+/* Add a subtle indicator for active page */
+.nav-item a.active:before {
+  content: '•';
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--gold);
+  font-size: 1.5rem;
+}
+
+.scrolled {
+  background: rgba(250, 247, 242, 0.98);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 8px 32px rgba(44, 44, 44, 0.12);
+  height: 60px;
+}
+
+.menu-icon {
+  display: none;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 960px) {
+  .nav-menu {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    position: absolute;
+    top: 80px;
+    left: -100%;
+    opacity: 0;
+    transition: all 0.5s ease;
+    background-color: var(--ivory);
+    padding: 2rem;
+  }
+
+  .nav-menu.active {
+    left: 0;
+    opacity: 1;
+    z-index: 1;
+  }
+
+  .nav-item {
+    margin: 1rem 0;
+  }
+
+  .menu-icon {
+    display: block;
+    position: relative;
+    width: 30px;
+    height: 24px;
+  }
+
+  .menu-icon span,
+  .menu-icon span:before,
+  .menu-icon span:after {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 3px;
+    background-color: var(--dark-text);
+    transition: all 0.3s ease;
+  }
+
+  .menu-icon span {
+    top: 10px;
+  }
+
+  .menu-icon span:before {
+    top: -10px;
+  }
+
+  .menu-icon span:after {
+    top: 10px;
+  }
+
+  .menu-icon span.open {
+    background: transparent;
+  }
+
+  .menu-icon span.open:before {
+    transform: rotate(45deg);
+    top: 0;
+  }
+
+  .menu-icon span.open:after {
+    transform: rotate(-45deg);
+    top: 0;
+  }
+}
